@@ -7,13 +7,19 @@ import java.awt.GridLayout;
 import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
 import javax.swing.JTextField;
+
+import BaseDatos.ConexionMySQL;
+
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.*;
 
 public class Ventana {
 
@@ -29,6 +35,7 @@ public class Ventana {
 	private JButton btnNuevo;
 	private JButton btnCancelar;
 	private JButton btnSalir;
+	private JLabel lblAaaammdd;
 	
 
 	/**
@@ -65,7 +72,7 @@ public class Ventana {
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(112, 128, 144));
-		frame.setBounds(100, 100, 350, 416);
+		frame.setBounds(100, 100, 420, 416);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -177,8 +184,44 @@ public class Ventana {
 		btnNuevo.setBounds(22, 238, 89, 23);
 		frame.getContentPane().add(btnNuevo);
 		
-		
+		String accion = "Insertar";
 		btnGuardar = new JButton("Guardar");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ConexionMySQL mysql = new ConexionMySQL();
+				Connection cn = mysql.Conectar();
+				String ap1, ap2, nom1, nom2, fn, gen;
+				String sSQL = ""; //Sentencia SQL
+				String mensaje = "";
+				nom1 = txtPrimerNom.getText();
+				nom2 = txtSecondNombre.getText();
+				ap1 = txtPrimApellido.getText();
+				ap2 = txtSecondApellido.getText();
+				fn = txtNacimiento.getText();
+				gen = cboGenero.getSelectedItem().toString(); //Lo convierte a String
+				sSQL = "INSERT INTO datos_personales(nombre1, nombre2, apellido1, apellido2, fecha_nac, genero)" +
+						"VALUES(?, ?, ?, ?, ?, ?)";
+				mensaje = "Los datos se han insertado de manera satisfactoria...";
+				
+				try{
+					PreparedStatement pst = cn.prepareStatement(sSQL);
+					pst.setString(1, nom1);
+					pst.setString(2, nom2);
+					pst.setString(3, ap1);
+					pst.setString(4, ap2);
+					pst.setString(5, fn);
+					pst.setString(6, gen);
+					
+					int n = pst.executeUpdate();
+					
+					if(n > 0){
+						JOptionPane.showMessageDialog(null, mensaje);
+					}
+				}catch (SQLException ex){
+					JOptionPane.showMessageDialog(null, ex);
+				}
+			}
+		});
 		btnGuardar.setBounds(121, 238, 89, 23);
 		frame.getContentPane().add(btnGuardar);
 		
@@ -205,6 +248,10 @@ public class Ventana {
 		lblCapturaDeDatos.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblCapturaDeDatos.setBounds(69, 11, 210, 34);
 		frame.getContentPane().add(lblCapturaDeDatos);
+		
+		lblAaaammdd = new JLabel("AAAA-MM-DD");
+		lblAaaammdd.setBounds(330, 182, 73, 14);
+		frame.getContentPane().add(lblAaaammdd);
 		
 	}
 	void habilitar(){

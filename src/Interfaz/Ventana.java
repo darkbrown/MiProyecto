@@ -1,6 +1,7 @@
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import java.awt.Color;
 
 public class Ventana {
 
@@ -14,7 +15,7 @@ public class Ventana {
 			public void run() {
 				try {
 					Ventana window = new Ventana();
-					window.frame.setVisible(false);
+					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -34,6 +35,7 @@ public class Ventana {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(112, 128, 144));
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

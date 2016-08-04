@@ -14,7 +14,7 @@ public class Ventana {
 			public void run() {
 				try {
 					Ventana window = new Ventana();
-					window.frame.setVisible(true);
+					window.frame.setVisible(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

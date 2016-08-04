@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Ventana {
 
@@ -21,6 +23,12 @@ public class Ventana {
 	private JTextField txtPrimApellido;
 	private JTextField txtSecondApellido;
 	private JTextField txtNacimiento;
+	@SuppressWarnings("rawtypes")
+	private JComboBox cboGenero;
+	private JButton btnGuardar;
+	private JButton btnNuevo;
+	private JButton btnCancelar;
+	private JButton btnSalir;
 	
 
 	/**
@@ -31,7 +39,9 @@ public class Ventana {
 			public void run() {
 				try {
 					Ventana window = new Ventana();
+					window.frame.setLocationRelativeTo(null);
 					window.frame.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -43,19 +53,12 @@ public class Ventana {
 	 * Create the application.
 	 */
 	public Ventana() {
+		
 		initialize();
-		
-		
-	}
-	
-	void habilitar(){
+		inhabilitar();
 		
 	}
 	
-	void inabilitar(){
-		
-	}
-
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -67,6 +70,11 @@ public class Ventana {
 		frame.getContentPane().setLayout(null);
 		
 		txtPrimerNom = new JTextField();
+		txtPrimerNom.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtPrimerNom.transferFocus();
+			}
+		});
 		txtPrimerNom.setBackground(new Color(255, 255, 255));
 		txtPrimerNom.setBounds(191, 73, 129, 20);
 		frame.getContentPane().add(txtPrimerNom);
@@ -109,45 +117,86 @@ public class Ventana {
 		frame.getContentPane().add(lblGenero);
 		
 		txtSecondNombre = new JTextField();
+		txtSecondNombre.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtSecondNombre.transferFocus();
+			}
+		});
 		txtSecondNombre.setBounds(191, 98, 129, 20);
 		frame.getContentPane().add(txtSecondNombre);
 		txtSecondNombre.setColumns(10);
 		
 		txtPrimApellido = new JTextField();
+		txtPrimApellido.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtPrimApellido.transferFocus();
+			}
+		});
 		txtPrimApellido.setBounds(191, 124, 129, 20);
 		frame.getContentPane().add(txtPrimApellido);
 		txtPrimApellido.setColumns(10);
 		
 		txtSecondApellido = new JTextField();
+		txtSecondApellido.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtSecondApellido.transferFocus();
+			}
+		});
 		txtSecondApellido.setBounds(191, 152, 129, 20);
 		frame.getContentPane().add(txtSecondApellido);
 		txtSecondApellido.setColumns(10);
 		
 		txtNacimiento = new JTextField();
+		txtNacimiento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtNacimiento.transferFocus();
+			}
+		});
 		txtNacimiento.setBounds(191, 179, 129, 20);
 		frame.getContentPane().add(txtNacimiento);
 		txtNacimiento.setColumns(10);
 		
-		JComboBox cboGenero = new JComboBox();
+		cboGenero = new JComboBox();
+		cboGenero.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cboGenero.transferFocus();
+			}
+		});
 		cboGenero.setBounds(191, 204, 129, 20);
 		cboGenero.addItem("M");
 		cboGenero.addItem("F");
+		
 		frame.getContentPane().add(cboGenero);
 		
-		JButton btnNuevo = new JButton("Nuevo");
+		btnNuevo = new JButton("Nuevo");
+		btnNuevo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				habilitar();
+			}
+		});
 		btnNuevo.setBounds(22, 238, 89, 23);
 		frame.getContentPane().add(btnNuevo);
 		
 		
-		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar = new JButton("Guardar");
 		btnGuardar.setBounds(121, 238, 89, 23);
 		frame.getContentPane().add(btnGuardar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				inhabilitar();
+			}
+		});
 		btnCancelar.setBounds(225, 238, 89, 23);
 		frame.getContentPane().add(btnCancelar);
 		
-		JButton btnSalir = new JButton("Salir");
+		btnSalir = new JButton("Salir");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		btnSalir.setBounds(131, 272, 89, 23);
 		frame.getContentPane().add(btnSalir);
 		
@@ -156,5 +205,39 @@ public class Ventana {
 		lblCapturaDeDatos.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblCapturaDeDatos.setBounds(69, 11, 210, 34);
 		frame.getContentPane().add(lblCapturaDeDatos);
+		
+	}
+	void habilitar(){
+		txtPrimerNom.setEnabled(true);
+		txtSecondNombre.setEnabled(true);
+		txtPrimApellido.setEnabled(true);
+		txtSecondApellido.setEnabled(true);
+		txtNacimiento.setEnabled(true);
+		cboGenero.setEnabled(true);
+		txtPrimerNom.setText("");
+		txtSecondNombre.setText("");
+		txtPrimApellido.setText("");
+		txtSecondApellido.setText("");
+		txtNacimiento.setText("");
+		btnGuardar.setEnabled(true);
+		btnCancelar.setEnabled(true);
+		txtPrimerNom.requestFocus(); //Para que se mueva el cursor a esta posicion
+	}
+	
+	void inhabilitar(){
+		txtPrimerNom.setEnabled(false);
+		txtSecondNombre.setEnabled(false);
+		txtPrimApellido.setEnabled(false);
+		txtSecondApellido.setEnabled(false);
+		txtNacimiento.setEnabled(false);
+		cboGenero.setEnabled(false);
+		txtPrimerNom.setText("");
+		txtSecondNombre.setText("");
+		txtPrimApellido.setText("");
+		txtSecondApellido.setText("");
+		txtNacimiento.setText("");
+		btnGuardar.setEnabled(false);
+		btnCancelar.setEnabled(false);
+		
 	}
 }

@@ -20,10 +20,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.*;
+import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 
 public class Ventana {
 
-	private JFrame frame;
+	private JFrame frmSss;
 	private JTextField txtPrimerNom;
 	private JTextField txtSecondNombre;
 	private JTextField txtPrimApellido;
@@ -46,8 +48,8 @@ public class Ventana {
 			public void run() {
 				try {
 					Ventana window = new Ventana();
-					window.frame.setLocationRelativeTo(null);
-					window.frame.setVisible(true);
+					window.frmSss.setLocationRelativeTo(null);
+					window.frmSss.setVisible(true);
 					
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -70,11 +72,12 @@ public class Ventana {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(112, 128, 144));
-		frame.setBounds(100, 100, 420, 416);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmSss = new JFrame();
+		frmSss.setTitle("Captura empleados");
+		frmSss.getContentPane().setBackground(new Color(112, 128, 144));
+		frmSss.setBounds(100, 100, 431, 378);
+		frmSss.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSss.getContentPane().setLayout(null);
 		
 		txtPrimerNom = new JTextField();
 		txtPrimerNom.addActionListener(new ActionListener() {
@@ -84,44 +87,44 @@ public class Ventana {
 		});
 		txtPrimerNom.setBackground(new Color(255, 255, 255));
 		txtPrimerNom.setBounds(191, 73, 129, 20);
-		frame.getContentPane().add(txtPrimerNom);
+		frmSss.getContentPane().add(txtPrimerNom);
 		txtPrimerNom.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Primer Apellido:");
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setFont(new Font("Times New Roman", Font.BOLD, 17));
 		lblNewLabel.setBounds(29, 118, 141, 29);
-		frame.getContentPane().add(lblNewLabel);
+		frmSss.getContentPane().add(lblNewLabel);
 		
 		JLabel lblSegundoApellido = new JLabel("Segundo Apellido:");
 		lblSegundoApellido.setForeground(new Color(255, 255, 255));
 		lblSegundoApellido.setFont(new Font("Times New Roman", Font.BOLD, 17));
 		lblSegundoApellido.setBounds(22, 146, 148, 29);
-		frame.getContentPane().add(lblSegundoApellido);
+		frmSss.getContentPane().add(lblSegundoApellido);
 		
 		JLabel lblPrimerNombre = new JLabel("Primer Nombre:");
 		lblPrimerNombre.setForeground(new Color(255, 255, 255));
 		lblPrimerNombre.setFont(new Font("Times New Roman", Font.BOLD, 17));
 		lblPrimerNombre.setBounds(29, 67, 141, 29);
-		frame.getContentPane().add(lblPrimerNombre);
+		frmSss.getContentPane().add(lblPrimerNombre);
 		
 		JLabel lblSegundoNombre = new JLabel("Segundo Nombre:");
 		lblSegundoNombre.setForeground(new Color(255, 255, 255));
 		lblSegundoNombre.setFont(new Font("Times New Roman", Font.BOLD, 17));
 		lblSegundoNombre.setBounds(29, 92, 141, 29);
-		frame.getContentPane().add(lblSegundoNombre);
+		frmSss.getContentPane().add(lblSegundoNombre);
 		
 		JLabel lblFNacimiento = new JLabel("F. Nacimiento:");
 		lblFNacimiento.setForeground(new Color(255, 255, 255));
 		lblFNacimiento.setFont(new Font("Times New Roman", Font.BOLD, 17));
 		lblFNacimiento.setBounds(50, 173, 120, 29);
-		frame.getContentPane().add(lblFNacimiento);
+		frmSss.getContentPane().add(lblFNacimiento);
 		
 		JLabel lblGenero = new JLabel("Genero:");
 		lblGenero.setForeground(new Color(255, 255, 255));
 		lblGenero.setFont(new Font("Times New Roman", Font.BOLD, 17));
 		lblGenero.setBounds(99, 198, 71, 29);
-		frame.getContentPane().add(lblGenero);
+		frmSss.getContentPane().add(lblGenero);
 		
 		txtSecondNombre = new JTextField();
 		txtSecondNombre.addActionListener(new ActionListener() {
@@ -130,7 +133,7 @@ public class Ventana {
 			}
 		});
 		txtSecondNombre.setBounds(191, 98, 129, 20);
-		frame.getContentPane().add(txtSecondNombre);
+		frmSss.getContentPane().add(txtSecondNombre);
 		txtSecondNombre.setColumns(10);
 		
 		txtPrimApellido = new JTextField();
@@ -140,7 +143,7 @@ public class Ventana {
 			}
 		});
 		txtPrimApellido.setBounds(191, 124, 129, 20);
-		frame.getContentPane().add(txtPrimApellido);
+		frmSss.getContentPane().add(txtPrimApellido);
 		txtPrimApellido.setColumns(10);
 		
 		txtSecondApellido = new JTextField();
@@ -150,7 +153,7 @@ public class Ventana {
 			}
 		});
 		txtSecondApellido.setBounds(191, 152, 129, 20);
-		frame.getContentPane().add(txtSecondApellido);
+		frmSss.getContentPane().add(txtSecondApellido);
 		txtSecondApellido.setColumns(10);
 		
 		txtNacimiento = new JTextField();
@@ -160,7 +163,7 @@ public class Ventana {
 			}
 		});
 		txtNacimiento.setBounds(191, 179, 129, 20);
-		frame.getContentPane().add(txtNacimiento);
+		frmSss.getContentPane().add(txtNacimiento);
 		txtNacimiento.setColumns(10);
 		
 		cboGenero = new JComboBox();
@@ -173,7 +176,7 @@ public class Ventana {
 		cboGenero.addItem("M");
 		cboGenero.addItem("F");
 		
-		frame.getContentPane().add(cboGenero);
+		frmSss.getContentPane().add(cboGenero);
 		
 		btnNuevo = new JButton("Nuevo");
 		btnNuevo.addActionListener(new ActionListener() {
@@ -182,7 +185,7 @@ public class Ventana {
 			}
 		});
 		btnNuevo.setBounds(22, 238, 89, 23);
-		frame.getContentPane().add(btnNuevo);
+		frmSss.getContentPane().add(btnNuevo);
 		
 		String accion = "Insertar";
 		btnGuardar = new JButton("Guardar");
@@ -223,7 +226,7 @@ public class Ventana {
 			}
 		});
 		btnGuardar.setBounds(121, 238, 89, 23);
-		frame.getContentPane().add(btnGuardar);
+		frmSss.getContentPane().add(btnGuardar);
 		
 		btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
@@ -232,8 +235,8 @@ public class Ventana {
 			}
 		});
 		btnCancelar.setBounds(225, 238, 89, 23);
-		frame.getContentPane().add(btnCancelar);
-		
+		frmSss.getContentPane().add(btnCancelar);
+		//Comentario
 		btnSalir = new JButton("Salir");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -241,17 +244,23 @@ public class Ventana {
 			}
 		});
 		btnSalir.setBounds(131, 272, 89, 23);
-		frame.getContentPane().add(btnSalir);
+		frmSss.getContentPane().add(btnSalir);
 		
 		JLabel lblCapturaDeDatos = new JLabel("Captura de datos empleado");
 		lblCapturaDeDatos.setForeground(new Color(64, 224, 208));
 		lblCapturaDeDatos.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblCapturaDeDatos.setBounds(69, 11, 210, 34);
-		frame.getContentPane().add(lblCapturaDeDatos);
+		frmSss.getContentPane().add(lblCapturaDeDatos);
 		
 		lblAaaammdd = new JLabel("AAAA-MM-DD");
 		lblAaaammdd.setBounds(330, 182, 73, 14);
-		frame.getContentPane().add(lblAaaammdd);
+		frmSss.getContentPane().add(lblAaaammdd);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(47, 79, 79));
+		panel.setBorder(new TitledBorder(null, "Gge", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBounds(10, 11, 393, 314);
+		frmSss.getContentPane().add(panel);
 		
 	}
 	void habilitar(){
